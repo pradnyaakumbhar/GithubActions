@@ -9,8 +9,11 @@ jobs:
         id: cache-dependencies
         uses: actions/cache@v3
         with:
-          path: ~/.npm
-          key: "npm-cache"
+            path: ~/.npm
+            key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }} # linux-npm-cache-7383493
+            restore-keys: |
+              ${{ runner.os }}-npm-cache-
+              ${{ runner.os }}-
       - name: Display Cache Output
         run: echo '${{ toJSON(steps.cache-dependencies.outputs) }}'
       - name: Install dependencies
