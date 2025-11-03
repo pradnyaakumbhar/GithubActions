@@ -1,0 +1,16 @@
+name: calling reusable workflow
+on: 
+    workflow_dispatch:
+        inputs:
+            name:
+                description: 'Input description'
+                type: string
+                default: 'Pradnya'
+                required: false
+jobs:
+    calling-reusable-wf:
+        uses: ./reusable.yaml
+        with:
+            name: ${{ inputs.name }}
+        secrets:
+            access-token: ${{ secrets.ACCESS_TOKEN }}
