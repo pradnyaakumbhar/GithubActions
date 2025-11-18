@@ -5,10 +5,14 @@ jobs:
     simple-action:
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v3
             - name: simple js action
               id: greet
-              uses: actions/hello-world-javascript-action@v1
+              uses: ./.github/actions/hello
+              # uses: actions/hello-world-javascript-action@v1
               with:
-                who-to-greet: Ali
+                who-to-greet: Pradnya
             - name: Log greeting time
               run: echo "${{ steps.greet.outputs.time }}"
+            - name: Log ENV Var
+              run: echo $HELLO_TIME
